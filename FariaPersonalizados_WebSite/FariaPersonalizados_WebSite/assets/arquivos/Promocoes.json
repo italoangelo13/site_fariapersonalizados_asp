@@ -1,0 +1,21 @@
+{
+    "promocao": [
+      {
+        "idPromo": 1,
+        "titulo": "Promoção de Pascoa - Faria Personalizados",
+        "descricao": "A <strong>Faria personalizados</strong> está com uma promoção imperdível. <br> São Duas canecas de Polímero (Plástico), por apenas R$ 25,00. É isso mesmo, 2 Canecas Por 25 reais. <br> Você não pode Perder esta promoção, clique no link abaixo e peça já a sua.",
+        "textoLink": "Fazer Pedido Pelo Whatsapp",
+        "link": "s https://api.whatsapp.com/send?phone=553195760071&text=Olá, gostei desta promoção de Páscoa e desejo realizar meu pedido de 2 Canecas de Polímero por 25 reais.",
+        "img": "s assets\\img\\Promocoes\\promocao_pascoa.jpg",
+        "ativo": true
+      },
+      {
+        "idPromo": 2,
+        "titulo": "Promoção Fique 'Kit' com sua mãe! - Faria Personalizados",
+        "descricao": "A <strong>Faria personalizados</strong> Traz pra você uma promoção imperdível. 1 kit para o dia das mães, para que você possa presentear a sua mãe nesse dia tão especial. O kit vem com: <br> <strong><ul><li>1 Camisa de Poliéster Personalizada</li> <li>1 Caneca de Porcelana Personalizada</li> <li>1 Chinelo Personalizado</li> <li>1 Almo-chaveiro Personalizado</li></ul></strong>",
+        "textoLink": "Fazer Pedido Pelo Whatsapp",
+        "link": "s https://api.whatsapp.com/send?phone=553195760071&text=Olá, gostaria de adquirir o kit para o dia das mães.",
+        "ativo": false
+      }
+    ]
+  }
