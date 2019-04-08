@@ -38,10 +38,16 @@
                                 <a class="nav-link" href="index.html">Inicio <span class="sr-only">(current)</span></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="institucional.html">Institucional</a>
+                                <a class="nav-link" href="institucional.html">Sobre Nós</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="prod.html">Produtos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="prod.html">Promoções</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="prod.html">Blog</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="contato.html">Contato</a>
@@ -311,12 +317,22 @@
         <script src="assets/local/scripts.js"></script>
         <script type="text/javascript">
             $(document).ready(function () {
-                if (sessionStorage.getItem('adsense') == 'N' || sessionStorage.getItem('adsense') == null) {
-                    $('#modalAnuncio').modal('show');
-                    sessionStorage.setItem('adsense', 'S');
-                }
+                carregaBanners();
             });
 
+            function carregaBanners() {
+                $.ajax({
+                    url: "index.aspx/RetornaSlides",
+                    type: 'post',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    data: {},
+                    success: function (data) {
+                        var dados = data.d;
+                        console.log(dados);
+                    }
+                });
+            }
 
             function enviarPedido() {
                 $('#modalAnuncio').modal('hide')

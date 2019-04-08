@@ -6,6 +6,9 @@ $( document ).ready(function() {
 
 
 
+
+
+
 function msgSucesso(msg){
     $.confirm({
         theme: 'bootstrap',
