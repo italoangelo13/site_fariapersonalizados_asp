@@ -14,44 +14,48 @@ namespace FariaPersonalizados_WebSite
 {
     public partial class index : System.Web.UI.Page
     {
+        string AdPromocao;
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                AdPromocao = BuscaAdsense();
 
+                if (AdPromocao.Equals("S"))
+                {
+                    SetPromocao();
+                }
+            }
         }
 
-
-
-        [WebMethod, ScriptMethod(ResponseFormat = ResponseFormat.Json, UseHttpGet = false)]
-        public string RetornaSlides()
+        private void SetPromocao()
         {
-            List<Slide> lista = new List<Slide>();
-            //TABELA BANCO: SLIDES
             BancoDados b = new BancoDados();
-            b.Query("SELECT * FROM slides WHERE SLD_ATIVO = 'S'");
+            b.Query("SELECT ADSENSE_PROMOCAO FROM parametros_gerais");
+            DataTable dt = b.ExecutarDataTable();
+        }
+
+        private string BuscaAdsense()
+        {
+            string ad = "N";
+            BancoDados b = new BancoDados();
+            b.Query("SELECT ADSENSE_PROMOCAO FROM parametros_gerais");
             DataTable dt = b.ExecutarDataTable();
             if (dt.Rows.Count > 0)
             {
-                for (int i = 0; i < dt.Rows.Count; i++)
-                {
-                    Slide s = new Slide();
-                    s.Id = int.Parse(dt.Rows[i]["SLD_CODIGOID"].ToString());
-                    s.Nome = dt.Rows[i]["SLD_NOME_BANNER"].ToString();
-                    s.Caminho = dt.Rows[i]["SLD_CAMINHOIMG"].ToString();
-                    s.Ativo = bool.Parse(dt.Rows[i]["SLD_ATIVO"].ToString());
-                    lista.Add(s);
-                }
+                ad = dt.Rows[0]["ADSENSE_PROMOCAO"].ToString().ToUpper();
             }
             else
             {
-                Slide s = new Slide();
-                s.Id = 1;
-                s.Nome = "banner"+ s.Id + ".png";
-                s.Caminho = "assets/img/banner/banner" + s.Id + ".png";
-                s.Ativo = true;
-                lista.Add(s);
+                ad = "N";
             }
 
-            return JsonConvert.SerializeObject(lista);
+            return ad;
+
         }
+
+
+
+        
     }
 }

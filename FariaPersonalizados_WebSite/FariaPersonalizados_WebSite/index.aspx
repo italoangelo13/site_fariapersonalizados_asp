@@ -293,7 +293,7 @@
         </div>
 
         <!-- Modal -->
-        <div class="modal fade " id="modalAnuncio" tabindex="-1" role="dialog" aria-labelledby="modalAnuncioLabel" aria-hidden="true">
+        <asp:panel runat="server" class="modal fade " id="modalAnuncio" tabindex="-1" role="dialog" aria-labelledby="modalAnuncioLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-body text-center">
@@ -307,7 +307,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </asp:panel>
 
 
         <!--Scripts-->
@@ -322,14 +322,30 @@
 
             function carregaBanners() {
                 $.ajax({
-                    url: "index.aspx/RetornaSlides",
+                    url: "Services/Slides.asmx/RetornaSlides",
                     type: 'post',
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     data: {},
                     success: function (data) {
-                        var dados = data.d;
-                        console.log(dados);
+                        var dados = JSON.parse(data.d);
+                        //console.log(dados);
+                        let innerDiv = document.querySelector('.carousel-inner');
+                        let texto;
+                        for (var i = 0; i < dados.length; i++) {
+                            let id = dados[i].Id;
+                            let caminho = dados[i].Caminho;
+                            if (i == 0) {
+                                texto = '<div class="carousel-item active"> '+
+                                            '<img class="d-block w-100" src="' + caminho + '" alt="Second slide">'+
+                                        '</div>';
+                            }
+                            else {
+                                texto += '<div class="carousel-item "><img class="d-block w-100" src="' + caminho + '" alt="Second slide"></div>';
+                            }
+                        }
+
+                        innerDiv.innerHTML = texto;
                     }
                 });
             }

@@ -10,6 +10,6 @@ namespace FariaPersonalizados_WebSite.Classes
         public int Id { get; set; }
         public string Nome { get; set; }
         public string Caminho { get; set; }
-        public bool Ativo { get; set; }
+        public string Ativo { get; set; }
     }
 }
